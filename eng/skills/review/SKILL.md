@@ -5,7 +5,7 @@ description: >-
   you commit. Reads staged + unstaged changes and new files, learns how the
   codebase already does things, and gives a high-signal gut-check: correctness,
   consistency with the codebase, obvious security/data issues, leftover debug/dead
-  code, and missing tests, separating blocking issues from nits. Standalone: does
+  code, and missing tests, reporting only what would actually hurt. Standalone: does
   NOT touch `.plan` docs. Distinct from `/pr-review` (whole branch vs main, with
   GitHub context): this is the quick check on the working tree. Use right before
   committing. Triggers: "review my changes", "review the diff", "check this before
@@ -49,19 +49,23 @@ even if it "works".
 
 ## 3. Review: top-down, high-signal
 
-This is a pre-commit pass, so favor the issues that actually matter and move
-fast. For each finding give `file:line`, why it matters, and the fix:
+This is a pre-commit pass, so move fast. Use these dimensions to find problems,
+and the bar in `${CLAUDE_PLUGIN_ROOT}/REVIEW-FORMAT.md` to decide which ones get
+written up:
 
 1. **Correctness & edge cases**: does it do what you intended? Empty/null/
    boundary/malformed inputs, inverted conditions, off-by-ones, error paths that
    swallow failures.
-2. **Consistency with the codebase**: reinvented helpers, diverging patterns,
-   one-off styles. Cite the pattern to follow.
+2. **Consistency with the codebase**: reinvented helpers and divergences that
+   will cause real harm. Cite the pattern to follow. A pattern that is merely
+   different is a minor point.
 3. **Obvious security / data safety**: injection, missing authz, secrets in
    code or logs, unvalidated input crossing a trust boundary (including LLM
    output). Only the clear stuff, this isn't a full audit.
 4. **Leftovers**: stray debug logs, `console.log`/prints, commented-out blocks,
-   TODOs you meant to resolve, dead code, a `.only` left on a test.
+   TODOs you meant to resolve, dead code, a `.only` left on a test. These are
+   cheap to catch now, so report them, but as one compact list (see §4), not a
+   section each.
 5. **Tests**: did the change need a test that isn't here? Do changed tests
    still prove something?
 
@@ -71,12 +75,13 @@ commit, fast.
 
 ## 4. Deliver
 
-- **Verdict**: one line. ✅ good to commit / 🟡 commit after these / 🔴 don't
-  commit yet, plus a one-sentence summary.
-- **Blocking**: must fix before committing. Each: `file:line`, problem, fix.
-  Empty is a fine and common answer for a small clean change.
-- **Nits**: optional improvements, clearly labeled so they don't read as
-  blockers.
+Report in the shape defined by `${CLAUDE_PLUGIN_ROOT}/REVIEW-FORMAT.md`: verdict,
+one section per finding with the current code, the suggested fix, and the reason,
+then the skipped count. The verdict labels for this skill are ✅ good to commit,
+🟡 commit after these, and 🔴 don't commit yet.
+
+Leftovers go in a single `### Leftovers` section after the findings: one bullet
+per item, `file:line` and what to remove, no code blocks.
 
 Offer to apply the fixes. But committing is the user's call, you review, you
 don't commit.
@@ -85,5 +90,12 @@ don't commit.
 
 - Don't pad. On a clean two-line change, "looks good, commit it" is the right
   review. Manufacturing findings wastes the user's time.
-- Don't confuse a nit with a bug: severity is the whole value of a review.
 - If something's unclear, ask rather than guessing the intent.
+
+## Done when
+
+- The verdict line is first and matches the findings: don't commit yet if and
+  only if at least one finding is `🔴 blocking`.
+- Every finding has a `file:line`, the current code, a suggested fix (or a
+  sentence saying what to do), and a **Why** naming the concrete failure.
+- Leftovers sit in one list, and minor points appear only as the skipped count.

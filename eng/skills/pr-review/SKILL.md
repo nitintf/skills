@@ -24,8 +24,9 @@ description: >-
 You are reviewing a change before it lands. A junior reviewer rubber-stamps the
 diff line by line. A staff/principal engineer asks: *is this the right change,
 is it correct, will it age well, and does it look like our codebase?* Your job is
-the latter. Be specific, cite `file:line`, and separate **blocking** issues from
-**nits** so the author knows what actually gates the merge.
+the latter. Be specific, cite `file:line`, and report only what actually hurts:
+security, data, broken behaviour, broken contracts. The author should be able to
+act on every section you write.
 
 ## 1. Establish what you're reviewing
 
@@ -104,8 +105,9 @@ the `## Scope → Out` list.
 
 ## 3. Review dimensions
 
-Work top-down, correctness gates the merge; polish doesn't. For each finding,
-give the `file:line`, say *why* it matters, and propose the fix.
+Work top-down, correctness gates the merge; polish doesn't. Whether something
+earns a write-up is decided by the bar in `${CLAUDE_PLUGIN_ROOT}/REVIEW-FORMAT.md`:
+use these dimensions to find problems, and that bar to decide which ones to report.
 
 1. **Correctness & edge cases**: does it do what the PR/issue claims? Empty,
    null, duplicate, malformed, concurrent, and boundary inputs. Off-by-ones,
@@ -115,8 +117,10 @@ give the `file:line`, say *why* it matters, and propose the fix.
    wrong place, coupling that will hurt later. Is there a simpler change that
    does the same job?
 3. **Consistency with the codebase**: the dimension you must not skip (§2).
-   Reinventing a helper that exists, diverging from house patterns, one-off
-   styles. Cite the pattern to follow.
+   Reinventing a helper that exists, diverging from house patterns. Report it
+   when the divergence will cause real harm (a copied helper that will drift, an
+   error path that skips the shared handler) and cite the pattern to follow. A
+   pattern that is merely different is a minor point.
 4. **Security & data safety**: trust boundaries, injection (SQL/command/
    template), authz checks, secrets in code/logs, unsafe deserialization, and
    for any LLM-touching code, prompt-injection / unvalidated model output.
@@ -129,23 +133,17 @@ give the `file:line`, say *why* it matters, and propose the fix.
 7. **Migration & backward compatibility**: schema changes, data backfills,
    rollback path, API/contract breaks, feature-flag and deploy ordering.
 8. **Readability & maintainability**: naming, dead code, stray debug logs,
-   commented-out blocks, missing context on genuinely non-obvious code. (Nits,
-   unless they obscure correctness.)
+   commented-out blocks. Minor points, unless they hide a correctness problem.
 
 ## 4. Deliver the review
 
-Output to chat (write a file only if asked). Structure it so the author can act:
+Output to chat (write a file only if asked), in the shape defined by
+`${CLAUDE_PLUGIN_ROOT}/REVIEW-FORMAT.md`: verdict, one section per finding with
+the current code, the suggested fix, and the reason, then open questions and the
+skipped count.
 
-- **Verdict**: one line. ✅ approve / 🟡 approve with comments / 🔴 request
-  changes, plus a one-sentence summary of the change and its overall quality.
-- **What's good**: call out genuinely solid choices. Real, not filler; a staff
-  review reinforces good patterns, it doesn't only hunt for faults.
-- **Blocking**: issues that must be fixed before merge. Each: `file:line`, the
-  problem, why it matters, and the suggested fix. Empty is a fine answer.
-- **Non-blocking / nits**: improvements and style that shouldn't gate the merge.
-  Label them clearly so they don't read as blockers.
-- **Open questions**: things you genuinely can't resolve from the diff; ask the
-  author rather than guessing their intent.
+The verdict labels for this skill are ✅ approve, 🟡 approve with comments, and
+🔴 request changes. Any `🔴 blocking` finding means request changes.
 
 ## 5. Close the loop (only if a `.plan` doc exists)
 
@@ -162,8 +160,16 @@ Ask before writing. If there's no doc, skip this entirely.
 
 - Don't invent rationale for code you don't understand, say what's unclear and
   ask. A confident-wrong review is worse than a question.
-- Don't pad the count. Three real blocking issues beat fifteen nits.
-- Severity is the whole point: never let a real bug sit in the same bucket as a
-  naming nit. If nothing blocks, say so plainly and approve.
+- Three real findings beat fifteen minor ones. If nothing clears the bar,
+  approve plainly.
 - You review and report; you don't merge. Offer to apply fixes if the user wants,
   but landing the PR is their call.
+
+## Done when
+
+- The verdict line is first and matches the findings: request changes if and
+  only if at least one finding is `🔴 blocking`.
+- Every finding has a `file:line`, the current code, a suggested fix (or a
+  sentence saying what to do), and a **Why** naming the concrete failure.
+- Nothing below the bar in `REVIEW-FORMAT.md` got its own section; minor points
+  appear only as the skipped count.

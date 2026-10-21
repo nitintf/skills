@@ -50,12 +50,13 @@ is worse than no router.
 
 ## Contracts to respect
 
-Three files other skills depend on. Change these first, then the skills.
+Files other skills depend on. Change these first, then the skills.
 
 | File | What depends on it |
 |---|---|
 | [`eng/SPEC.md`](eng/SPEC.md) | The `.plan` doc schema. Every pipeline skill reads and writes it. Add a field here before adding it to a skill. |
 | [`eng/CONVENTIONS.md`](eng/CONVENTIONS.md) | What counts as a house convention and the `_conventions.md` cache format. Ten skills read that cache. |
+| [`eng/REVIEW-FORMAT.md`](eng/REVIEW-FORMAT.md) | What earns a review finding and how each one is laid out. `/pr-review` and `/review` both report in this shape. |
 | [`productivity/DAILY-NOTE.md`](productivity/DAILY-NOTE.md) | The daily note schema, and which skill owns which section. `## Notes` is the user's and no skill edits it. |
 | [`writing/RULES.md`](writing/RULES.md) | The house writing style, injected into every session by the `writing` plugin's `SessionStart` hook. `/unslop` reads it rather than restating it. |
 

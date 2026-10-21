@@ -58,7 +58,7 @@ require a `.plan` doc.
 | `/refactor`       | Plan + safely execute a **behavior-preserving** refactor: safety net first, atomic steps kept green, verify nothing changed. |
 | `/backfill-tests` | Characterization tests for existing untested code: lock in current behavior and **surface suspected bugs** instead of encoding them. |
 | `/pr-walkthrough` | **Understand** a PR you didn't write, before judging it: intent from the ticket, how the area works today, a dependency-ordered reading path, the before/after runtime trace, and the questions only the author can answer. Explains, never grades. Hands off to `/pr-review`. |
-| `/pr-review`      | Staff/principal review of a PR, yours or someone else's, with `gh` and ticket context: correctness → architecture → **house-style consistency**, blocking vs nits. Your **pre-merge** review. |
+| `/pr-review`      | Staff/principal review of a PR, yours or someone else's, with `gh` and ticket context: correctness → architecture → **house-style consistency**, one section per finding with the code, the fix, and why. No nitpicks. Your **pre-merge** review. |
 | `/review`         | Fast **pre-commit** gut-check of the uncommitted working diff. Lighter than `/pr-review`; no branch, no `gh`. |
 
 > Claude Code also ships a built-in `/code-review` with a `--fix` mode and a
