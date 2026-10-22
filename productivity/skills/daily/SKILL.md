@@ -109,6 +109,10 @@ Four things come out of it:
    scratch, even when it is long, even when it looks unrelated to today.
 4. **His annotations.** Every line elsewhere in the file that he edited or added.
 
+Then read `## Notes` in `$VAULT/99 Meta/Home.md`. Its unticked tasks are
+candidates for today's plan, exactly like items mined from yesterday's `## Notes`.
+How to sweep them out of Home afterwards is `DAILY-NOTE.md` §8.
+
 ### His annotations, wherever they are
 
 Points 3 and 4 are one input, and point 4 is the one that keeps getting missed.
@@ -335,6 +339,8 @@ exactly:
   this skill could do.
 - **Never clear a checkbox** he already ticked by hand.
 - **Never touch `## Shutdown`.**
+- **Sweep Home last**, after today's note is written, per `DAILY-NOTE.md` §8:
+  remove the tasks you moved and the ticked ones, leave his other text alone.
 - **Never commit the vault.** That is `/shutdown`'s last step, once a day
   (`DAILY-NOTE.md` §6). Archive moves from Step 3 are staged and left for it.
 
@@ -406,5 +412,7 @@ Never write the config without confirmation.
 - Every carried task at 3+ days has one callout on its line, and there is no
   separate aged block.
 - Every task in `## Plan for today` is one he could tick tonight.
+- Every unticked task from Home's `## Notes` is in today's plan or carried over,
+  and Home's `## Notes` holds only his non-task text and one empty `- [ ] `.
 - No note older than this week's Monday is still sitting in `Daily/`, and every
   note that moved is staged, not committed.

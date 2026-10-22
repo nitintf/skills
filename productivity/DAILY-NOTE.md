@@ -296,7 +296,35 @@ the archive has broken the loop, and that is a bug in the skill.
 
 ---
 
-## 8. Anchors for editing
+## 8. The Home notes (`99 Meta/Home.md`)
+
+`$VAULT/99 Meta/Home.md` is the vault's start page. Its `## Notes` section is
+where Nitin jots things during the day, usually `- [ ]` tasks, before any daily
+note exists for them. It is an inbox, not a second task list, so `/daily` empties
+it every morning.
+
+**`/daily` reads it every run and sweeps its tasks:**
+
+- **Unticked `- [ ]` items** become candidates for today's `## Plan for today`,
+  ranked with everything else under §4. The five-item ceiling still holds: any
+  that do not make the plan go into `## Carried over` marked *(from Home)*, day
+  count starting at 1st day. Then remove them from Home.
+- **Ticked `- [x]` items** are done. Remove them from Home, and mention them in
+  chat if they matter to today.
+- **Empty `- [ ]` lines** are removed.
+- **Any other text** (plain bullets, sentences, links) is his. Read it like
+  yesterday's `## Notes` (§5), and **leave it in place**. Never delete or reword
+  it.
+
+Touch nothing in Home outside `## Notes`: the header block, the `## Open tasks`
+heading and the dataview blocks stay exactly as they are. After the sweep, leave
+a single empty `- [ ] ` line under `## Notes` so there is somewhere to type. No
+other skill edits Home. `/shutdown` stages it in the vault commit like any other
+changed file.
+
+---
+
+## 9. Anchors for editing
 
 Skills find their section by exact `##` heading match. When editing:
 
