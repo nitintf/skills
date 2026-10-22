@@ -64,6 +64,26 @@ use". `/review` is pre-commit and local; `/pr-review` is pre-merge and pulls
 | `/user-stories` | A PRD or epic needs slicing into shippable, testable stories. |
 | `/product-flow` | An idea needs the whole run: PRD, stories, then handoff to `/scope`. |
 
+## Planning a new product (`studio` plugin)
+
+From idea to a locked plan before any code. `/studio-flow` runs these in order;
+each also runs alone. Files land in `docs/product/` of the product's folder.
+
+| Reach for | When |
+|---|---|
+| `/idea` | A new product idea. Office hours: hard questions, premises, approaches, `IDEA.md`. |
+| `/niche` | The category is crowded and you need the angle. Competitor and review research, ending in an interface thesis. |
+| `/founder-review` | Decide what the first version contains, feature by feature. |
+| `/brand` | Name, domains, app store clashes, voice, logo and icon. |
+| `/design-system` | Lock type, colour, spacing and motion as tokens, from a rendered preview. |
+| `/design-variants` | Compare several directions for the key screens before designing all of them. |
+| `/mockups` | Every screen and state as HTML, only from tokens. |
+| `/design-review` | Score the design, find drift, fix until every pass is 8 or more. |
+| `/tech-plan` | Stack, architecture, data model, folder rules, then hand off to `/scope`. |
+| `/studio-flow` | Run all of the above in order, resuming where you stopped. |
+
+`/idea` is for a whole new product; `/prd` is for a feature inside one.
+
 ## The work day loop (`work` plugin)
 
 One file per day. `/daily` opens it, `/shutdown` closes it, tomorrow's `/daily`

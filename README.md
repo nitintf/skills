@@ -94,6 +94,32 @@ directly by `/scope`.
 | `/user-stories` | Slice a PRD/epic into INVEST user stories with Gherkin acceptance criteria, ordered with dependencies. |
 | `/product-flow` | Orchestrator: idea → PRD → stories → handoff to `/scope`, gating between each. Right-sizes the run first, so a small task doesn't get a PRD it doesn't need. |
 
+## `studio`: plan a new product before any code
+
+For a new product, especially in a crowded category where the interface is the
+reason to switch. Every product gets `~/code/personal/<product>/`, and the plan
+lives in its `docs/product/`. Each skill runs alone or in `/studio-flow`.
+
+| Skill | What it does |
+|---|---|
+| `/idea` | Office hours: six hard questions, premises to agree, two or three approaches, then `IDEA.md`. Writes no code. |
+| `/niche` | Researches competitors, their store listings and their worst reviews, maps what the category does the same, and ends in an **interface thesis**. |
+| `/founder-review` | Pick expand, selective, hold or cut, then add, defer or skip every feature on record. |
+| `/brand` | Names checked for free domains and app store clashes, a voice guide, logo and icon directions as SVG. |
+| `/design-system` | A distinctive system (type verified at its source, colour roles with contrast, space, shape, motion), previewed as HTML, locked as `DESIGN.md` and `tokens.json`. |
+| `/design-variants` | 3 to 6 genuinely different directions for the key screens on one comparison board. |
+| `/mockups` | Every screen and state as HTML, phone-first for mobile apps, using only tokens. |
+| `/design-review` | Six scored passes plus a drift check, fixed and re-rated until every pass reaches 8. |
+| `/tech-plan` | Stack, system design, data model, folder layout and code rules, tokens wired into code, then on to `/scope`. |
+| `/studio-flow` | Runs the steps in order with an approval gate between each, and resumes across sessions. |
+
+**Consistency is enforced, not hoped for.** Every design value lives in
+`tokens.json`; mockups and app code use only the generated tokens, and
+`studio/scripts/drift.py` lists every raw colour, size or font that bypasses
+them. The `eng` skills treat `DESIGN.md`, `tokens.json` and `ARCHITECTURE.md` as
+binding, so the code that follows keeps to the plan. The contract is
+[`studio/STUDIO.md`](studio/STUDIO.md).
+
 ## `work`: the work day loop
 
 Four skills, invoked as `/work:daily` and so on, **one file per day**. `/daily` opens the day, `/shutdown` closes it,
@@ -233,6 +259,7 @@ works on demand if you install it without the hook.
 /plugin marketplace add nitintf/skills
 /plugin install eng@nitin-ai-skills
 /plugin install product@nitin-ai-skills
+/plugin install studio@nitin-ai-skills
 /plugin install work@nitin-ai-skills
 /plugin install productivity@nitin-ai-skills
 /plugin install learn@nitin-ai-skills
@@ -273,13 +300,15 @@ directory, and nothing there registers `writing/hooks/hooks.json`. So `/unslop`
 works when linked, but the always-on style does not. Use the plugin install for
 daily driving, and the links only while iterating on skill text.
 
-Five contracts to respect, each read by skills that will drift if you change a
+Six contracts to respect, each read by skills that will drift if you change a
 skill before you change the contract:
 
 - [`eng/SPEC.md`](eng/SPEC.md), the `.plan` doc schema. Every pipeline skill
   depends on it. **Add a field there first**, then in the skills.
 - [`eng/CONVENTIONS.md`](eng/CONVENTIONS.md): what counts as a house convention
   and the `_conventions.md` cache format. Ten skills read that cache.
+- [`studio/STUDIO.md`](studio/STUDIO.md): the product plan files, token format
+  and drift rules.
 - [`work/DAILY-NOTE.md`](work/DAILY-NOTE.md): the daily note
   schema and which skill owns which section.
 - [`learn/LEARN.md`](learn/LEARN.md): the study loop's files, review schedule and

@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Nitin's personal Claude Code plugins: reusable skill packs for engineering, product, daily workflow, note capture, and writing.",
-    "version": "0.6.0"
+    "version": "0.7.0"
   },
   "plugins": [
     {
@@ -18,6 +18,11 @@
       "name": "product",
       "source": "./product",
       "description": "Product-thinking skills. Write staff-level PRDs, slice them into testable user stories, or run /product-flow to take an idea through both and hand off to eng's /scope. Output lands in .plan/<feature>/ where /scope reads it directly."
+    },
+    {
+      "name": "studio",
+      "source": "./studio",
+      "description": "Plan a new product end to end before any code: /idea runs office hours, /niche researches the category into an interface thesis, /founder-review settles scope, /brand finds a free name and draws the icon, /design-system locks one distinctive design system as tokens, /design-variants and /mockups design every screen as HTML, /design-review scores it and checks drift, /tech-plan fixes the stack, architecture and code rules. /studio-flow runs them in order."
     },
     {
       "name": "work",

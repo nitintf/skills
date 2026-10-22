@@ -235,6 +235,14 @@ answers between skills. So it's derived once and cached.
      next skill gets it for free.
 - **If the cache doesn't exist**, fall back to exploring as before, and suggest
   `/conventions` once so the next run is cheaper. Never block on it.
+- **Product plan files outrank the cache and the code.** When the project has
+  `docs/product/` from the `studio` plugin, read `DESIGN.md`, `tokens.json` and
+  `ARCHITECTURE.md` there before step 1. They are decisions, not inferences:
+  a design value that is not a token, a file outside the folder rules, or a
+  pattern `ARCHITECTURE.md` rules out is a finding in any review and is avoided
+  in any plan or code. Check UI changes with the studio `drift.py` when it is
+  available. A plan that needs to break one of these decisions says so as an
+  open question, rather than quietly diverging.
 
 ---
 

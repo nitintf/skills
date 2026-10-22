@@ -30,6 +30,10 @@ it in the eng doc schema.
   worse than a plainly-described user segment.
 
 ### 2. Grill the gaps before writing
+If the project has `docs/product/IDEA.md` (from the `studio` plugin), read it
+and `NICHE.md` first: the problem, the person, the scope and the evidence are
+already decided there, so ask only about what they leave open.
+
 A PRD is only as good as its inputs. Ask the user: in small batches, one topic
 at a time, with your recommended answer for each: about whatever is unclear:
 - **Problem**: whose problem, how painful, how do we know it's real (evidence)?
