@@ -5,8 +5,8 @@ right folder but sounds like AI is a **failure**. Read this in full before
 writing a single line, then write like the person whose notes are below.
 
 These rules are reverse-engineered from Nitin's own best notes:
-`Learn/DSA/Data Structures/Arrays.md`, `Learn/DSA/Big O Notation.md`,
-`Learn/DSA/Data Structures/Sets.md`. When in doubt, open one of those and
+`$LEARN/DSA/Data Structures/Arrays.md`, `$LEARN/DSA/Big O Notation.md`,
+`$LEARN/DSA/Data Structures/Sets.md`. When in doubt, open one of those and
 match it.
 
 ## The core feeling

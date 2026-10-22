@@ -3,7 +3,7 @@ name: note
 description: >-
   Capture something you just learned into your Obsidian vault as a well-placed,
   well-written note in your own voice. Takes a spoken/typed brain-dump, figures
-  out where it belongs in the Learn/ hierarchy, decides whether to create a new
+  out where it belongs in the learning folder, decides whether to create a new
   note or merge into an existing one, writes it in Nitin's note-taking voice (not
   AI voice), wires up wikilinks, and updates the parent index hub. Auto-detects
   two modes: verbatim (you dumped the full content) and expand (you gave a topic
@@ -38,6 +38,11 @@ if the facts are correct.
 Silently creating notes at a path that doesn't exist is the worst outcome here.
 
 Everywhere below, `$VAULT` means the resolved root.
+
+Then resolve `$LEARN`, the learning folder, from the `learn` row of
+`$VAULT/99 Meta/Paths.md` (a two-column table of key and path, relative to
+`$VAULT`). No file or no row means `$VAULT/Learn`. Every `$LEARN/` path below is
+under it.
 
 **Before writing anything, read the voice guide:** `${CLAUDE_PLUGIN_ROOT}/VOICE.md`.
 It is not optional. It is the difference between this skill working and not.
@@ -80,24 +85,22 @@ and proceed.
 ## Step 3: Decide placement (explore the real vault every time)
 
 Folders change, so never work from memory. **List the current tree** under
-`Learn/` (and the vault root) before deciding.
+`$LEARN/` (and the vault root) before deciding.
 
 ```
-find $VAULT/Learn -type d -not -path '*/.*'
+find $LEARN -type d -not -path '*/.*'
 ```
 
 Then reason about where this topic belongs, following the vault's real shape:
 
 - **Concept / evergreen note** (the common case: "I learned about X") goes into
   the topical hierarchy, nested as deep as the topic is specific. Examples:
-  - sharding -> `Learn/System Design/Topics/Database/Sharding.md`
-  - a sorting algo -> `Learn/DSA/Alogrithms/Sorting/<Name>.md`
-    (note: the existing folder is literally spelled `Alogrithms`, match the real
-    folder name, don't "correct" it and create a duplicate.)
-  - a Rust concept -> `Learn/Languages/Rust/<Topic>.md`
+  - sharding -> `$LEARN/System Design/Topics/Database/Sharding.md`
+  - a sorting algo -> `$LEARN/DSA/Algorithms/Sorting/<Name>.md`
+  - a Rust concept -> `$LEARN/Languages/Rust/<Topic>.md`
 - **Reading / source note** (they're capturing a specific video/article/book)
-  goes into `Learn/Reading/<Domain>/<Title>.md` with the source scaffold (see
-  Step 5), and its link is added to that domain's `index.md`.
+  goes into `$LEARN/Reading/<Domain>/<Title>.md` with the source scaffold (see
+  Step 5), and its link is added to that domain's hub note.
 - Create intermediate folders when the natural home doesn't exist yet (e.g. a
   `Database/` folder under `System Design/Topics/`). Prefer an existing folder
   over inventing a parallel one.
@@ -112,7 +115,7 @@ Search the vault for an existing note on this topic before creating anything:
 
 ```
 find $VAULT -name '*.md' -iname '*<topic>*'
-grep -ril '<topic>' $VAULT/Learn
+grep -ril '<topic>' $LEARN
 ```
 
 - **No existing note** -> create a new one (Step 5).
@@ -156,7 +159,7 @@ tags:
   Obsidian `> [!info]` callouts for tradeoffs/rules, wikilinks with aliases.
 
 **Reading / source note**: use the source scaffold Nitin already uses (see
-`Learn/Reading/Databases/Why Elasticsearch Is So Fast.md`):
+`$LEARN/Reading/Databases/Why Elasticsearch Is So Fast.md`):
 
 ```markdown
 # <Title>
@@ -244,7 +247,7 @@ existing notes that *should* now point to it, and wire them up. Two cases:
 surface forms (singular/plural, with/without "IDs", common short name):
 
 ```
-grep -rin 'snowflake' $VAULT/Learn
+grep -rin 'snowflake' $LEARN
 ```
 
 Be precise, not greedy: only link a mention where the note is genuinely *about*
@@ -258,8 +261,9 @@ unique-IDs section; promote the plain 'snowflake' mention in para 3"), let the
 user confirm, then apply. Never silently rewrite another note.
 
 ### 6c. Update the index hub
-**Update the parent `index.md`** (create one if the folder has none, following
-the existing index format): add `[[<Note>]], <date>` under the best-fitting
+**Update the parent hub note**, the note named after its folder topic, such as
+`Reading - Databases.md` or `Databases.md` (create one if the folder has none,
+following an existing hub's format): add `[[<Note>]], <date>` under the best-fitting
 `##` section. Match the existing index's section style and dash convention.
 
 ## Step 7: Show it, then save
@@ -282,8 +286,8 @@ explicitly asks. Writing the files is the job; version control is theirs.
 - **No em dashes in prose.** Ever. Use periods, colons, `->`, or parentheses.
 - **Don't fabricate.** In expand mode, added claims must be standard and correct;
   flag inferences with a callout instead of stating shaky things as fact.
-- **Match real folder names**, including existing typos (`Alogrithms`,
-  `Aritcles`), never create a "corrected" duplicate folder.
+- **Match real folder names**, including existing typos (look before you
+  name a folder), never create a "corrected" duplicate folder.
 - **Ask before overwriting** an existing note. Merges get a plan + diff first.
 - **Editing other notes needs confirmation.** Backlink reconciliation (6b) can
   touch several existing notes; always show the batch of edits + diff and get a
