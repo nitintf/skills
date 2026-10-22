@@ -17,6 +17,12 @@ Read [`STUDIO.md`](../../STUDIO.md) first, especially tokens (§5) and mockups
 (voice, icon colours) when present. If `DESIGN.md` exists, offer to update it or
 start fresh.
 
+## Step 0: His taste
+
+Read `~/.claude/studio-taste.md` (`STUDIO.md` §10). Lean toward what he has chosen
+before, away from what he rejected, and do not reuse a previous product's fonts or
+palette unless he asks.
+
 ## Step 1: The anchor question
 
 Ask: **what is the one thing someone should remember after using this for the
@@ -61,6 +67,13 @@ Decide in this order, each choice with a one-line reason tied to the anchor:
    installed, follow `apple-design` for springs, gestures and sheets, and hold
    the components to the `emil-design-eng` polish bar (`STUDIO.md` §9).
 
+Get **independent voices** before settling (`STUDIO.md` §2): brief two subagents
+with the anchor, the thesis, `NICHE.md`'s sameness map and the taste file, not
+your draft. Have one follow `frontend-design` and one follow `impeccable`'s
+`typeset` and `colorize` playbooks when those skills are installed (`STUDIO.md`
+§9). Use `ui-ux-pro-max`'s palette and font-pairing data to widen the shortlists,
+never to pick. Merge the strongest ideas, crediting where each came from.
+
 Then split it out loud:
 
 - **Safe choices** (2 or 3): where it matches what users of the category expect,
@@ -80,7 +93,8 @@ Write `tokens.json` (draft), generate `tokens.css` (`STUDIO.md` §5), and build
 role as a named swatch with its contrast ratio, buttons, inputs, list rows and
 an empty state in every state (default, pressed, disabled, error), and two or
 three realistic screens of this product in its frame (`STUDIO.md` §6), with a
-light and dark toggle. Open it.
+light and dark toggle. Render it with `shots.sh` and look at every PNG first
+(`STUDIO.md` §6), fixing anything broken, then open it for him.
 
 He reacts. Change the tokens, regenerate, reload, until he approves. A request
 that breaks the anchor or the thesis gets one sentence saying so, then his call.
@@ -95,7 +109,9 @@ that breaks the anchor or the thesis gets one sentence saying so, then his call.
   rules ("numbers always in the number style", "never more than one primary
   button on a screen"); the safe choices and risks; a decisions table.
 
-Log the decisions and set the `design-system` row in `README.md`. If later steps
+Run the fresh-eyes review on `DESIGN.md` (`STUDIO.md` §2). Append his chosen and
+rejected fonts, palettes and aesthetic to the taste file (`STUDIO.md` §10). Log
+the decisions and set the `design-system` row in `README.md`. If later steps
 were done, mark them `needs rework`.
 
 ## Done when

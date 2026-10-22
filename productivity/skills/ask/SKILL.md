@@ -80,6 +80,7 @@ each also runs alone. Files land in `docs/product/` of the product's folder.
 | `/mockups` | Every screen and state as HTML, only from tokens. |
 | `/design-review` | Score the design, find drift, fix until every pass is 8 or more. |
 | `/tech-plan` | Stack, architecture, data model, folder rules, then hand off to `/scope`. |
+| `/launch-kit` | Store listings, keywords, store screenshots, landing page, first users. |
 | `/studio-flow` | Run all of the above in order, resuming where you stopped. |
 
 `/idea` is for a whole new product; `/prd` is for a feature inside one.

@@ -23,7 +23,10 @@ names he likes and any he dislikes.
 
 ## Step 2: Names
 
-Generate 20 or more across different strategies: a real word used sideways, a
+Read `~/.claude/studio-taste.md` (`STUDIO.md` §10) for name styles he chose or
+rejected before. Generate names with independent voices (`STUDIO.md` §2): two
+subagents given the brief, not your list. Together, 20 or more across different
+strategies: a real word used sideways, a
 compound, an invented word, a verb, a metaphor from the thesis. Cut to the best
 12, then check each:
 
@@ -54,7 +57,10 @@ Three distinct directions, each as hand-written SVG in `brand/`:
 
 Build one HTML page, `brand/board.html`, showing every direction on light and
 dark, the icon at real home screen sizes next to two competitors' icons, and the
-name under it. Open it for him. He picks a direction or asks for a mix; refine
+name under it. Render it with `shots.sh` and look at it first (`STUDIO.md` §6):
+an icon that turns to mush at 60 by 60 is cut before he sees it. Then open it for
+him. When `canvas-design` is installed, use it for a richer presentation board
+or social image of the chosen mark. He picks a direction or asks for a mix; refine
 the chosen SVGs until he approves.
 
 The icon colours become the seed for `/design-system`, which owns the final
@@ -65,6 +71,9 @@ palette.
 Name and why, the check results for it, the runners-up, the voice guide, the
 chosen logo and icon with their file paths, and the domains to register. Log the
 decisions and set the `brand` row in `README.md`.
+
+Append the chosen and rejected name styles and icon directions to the taste file
+(`STUDIO.md` §10).
 
 Buying domains and filing anything is his to do. List what to register and
 leave it there.

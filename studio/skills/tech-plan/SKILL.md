@@ -30,7 +30,10 @@ One decision at a time (`STUDIO.md` §2), each with a recommendation, the real
 alternative, and the cost of changing it later:
 
 - App framework (for mobile his default is Expo and React Native with
-  TypeScript; say plainly when a requirement argues for native instead).
+  TypeScript; say plainly when a requirement argues for native instead). For
+  Expo, follow `expo-overview` first when installed (`STUDIO.md` §9), and
+  `expo-router` for navigation; outside Expo, `react-native-best-practices` and
+  `react-navigation`.
 - Navigation, state, local storage and sync, backend or none, auth.
 - Styling: how components read the tokens.
 - Testing: unit, component, and end to end, and what runs in CI.
@@ -54,7 +57,8 @@ supports the platforms. A library you only remember is labelled as unverified.
 
 ## Step 4: Code structure and rules
 
-- The **folder layout**, every top-level folder with one line on what belongs
+- The **folder layout**, from `expo-project-structure` when installed and it is
+  an Expo app, every top-level folder with one line on what belongs
   there, and where a new screen, component, hook, store and test go.
 - **Naming and file rules**: one component per file, co-located tests, and so on.
 - **Patterns**: how screens get data, how errors are shown (using the empty and
@@ -62,7 +66,11 @@ supports the platforms. A library you only remember is labelled as unverified.
 - **The design rules for code**: tokens come from `src/theme/tokens.ts`, generated
   with `tokens.py --ts` (`STUDIO.md` §5); components are built once from
   `design/screens/components.html`; no raw colour, size or font anywhere, checked
-  with `drift.py src/`.
+  with `drift.py src/`. When installed, follow `expo-design-system` for the
+  component conventions (variants, sizes, states) on top of these tokens, and
+  `expo-native-ui` for platform feel.
+- **A component map**: every component in `components.html` with the code
+  component that implements it, its props and its states, so each is built once.
 
 ## Step 5: Developer experience
 
@@ -78,10 +86,13 @@ minutes. Lint, format and type-check config, the pre-commit or CI check includin
   read `docs/product/DESIGN.md` and `docs/product/ARCHITECTURE.md` before UI or
   structural work, take every design value from the tokens, put new code where
   the folder rules say, and flag drift instead of working around it.
+- **Test plan**: the critical paths from the journeys, the failure cases from
+  `IDEA.md`'s known gaps, and which level tests each (unit, component, end to end).
 - **First tickets**: the build order for the first version, one line each, from
   project scaffold to the last screen.
 
-Set the `tech-plan` row in `README.md`. The next step is the `eng` pipeline:
+Run the fresh-eyes review on `ARCHITECTURE.md` (`STUDIO.md` §2), then set the
+`tech-plan` row in `README.md`. The next step is the `eng` pipeline:
 `/scope` on the first ticket, which reads these files as binding.
 
 ## Done when

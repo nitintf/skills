@@ -35,6 +35,7 @@ In this order, each by following that skill's own `SKILL.md` in full:
 | 7 | `/mockups` | Never when there is a UI |
 | 8 | `/design-review` | Never when there is a UI |
 | 9 | `/tech-plan` | Never |
+| 10 | `/launch-kit` | Until the first version is close to shipping; it can run later on its own |
 
 Skipping a step is his decision: propose it with the reason, and record it in
 the `README.md` log.
@@ -51,7 +52,7 @@ before going on.
 
 ## Step 4: Finish
 
-When `tech-plan` is done, show the whole plan's summary: the thesis, the scope,
+When `tech-plan` is done (and `launch-kit`, or its skip recorded), show the whole plan's summary: the thesis, the scope,
 the name, the design direction, the stack, and the first tickets. The next step
 is `/scope` on the first ticket.
 

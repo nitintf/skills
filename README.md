@@ -111,6 +111,7 @@ lives in its `docs/product/`. Each skill runs alone or in `/studio-flow`.
 | `/mockups` | Every screen and state as HTML, phone-first for mobile apps, using only tokens. |
 | `/design-review` | Six scored passes plus a drift check, fixed and re-rated until every pass reaches 8. |
 | `/tech-plan` | Stack, system design, data model, folder layout and code rules, tokens wired into code, then on to `/scope`. |
+| `/launch-kit` | Store listings with researched keywords and counted characters, store screenshots from the mockups, a landing page, and a plan for the first hundred users. |
 | `/studio-flow` | Runs the steps in order with an approval gate between each, and resumes across sessions. |
 
 **Consistency is enforced, not hoped for.** Every design value lives in
@@ -119,6 +120,14 @@ lives in its `docs/product/`. Each skill runs alone or in `/studio-flow`.
 them. The `eng` skills treat `DESIGN.md`, `tokens.json` and `ARCHITECTURE.md` as
 binding, so the code that follows keeps to the plan. The contract is
 [`studio/STUDIO.md`](studio/STUDIO.md).
+
+**It looks before it shows.** Every HTML page is rendered to PNG in light and
+dark (`studio/scripts/shots.sh`, Playwright) and checked before you see it.
+Written files get a cold read by a fresh subagent, taste calls get independent
+voices, and `~/.claude/studio-taste.md` remembers what you chose and rejected
+across products. Where installed, the steps call companion skills from
+`impeccable`, `emilkowalski/skill`, `anthropics/skills`, `ui-ux-pro-max`,
+`expo/skills` and Callstack (`STUDIO.md` §9).
 
 ## `work`: the work day loop
 

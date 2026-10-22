@@ -21,8 +21,10 @@ From the scope, list every screen and sheet the first version needs, in the orde
 a new user meets them: first launch and onboarding, permissions, the core loop,
 settings, and the edges (empty, offline, error, paywall if any). For each: its
 job in one line, what the user sees first, second and third, and its states.
-Show the inventory and the navigation map (which screen leads where) and agree it
-before drawing.
+When `impeccable` is installed (`STUDIO.md` §9), plan each screen with its
+`shape` playbook, the onboarding with `onboard`, and every label, empty state and
+error message with `clarify`, in the voice from `BRAND.md`. Show the inventory
+and the navigation map (which screen leads where) and agree it before drawing.
 
 ## Step 2: Shared parts first
 
@@ -49,12 +51,19 @@ like an installed app (safe areas, no tap flash, no input zoom).
 Then `design/screens/index.html`: every screen as a thumbnail in flow order,
 linking to each one, with the light and dark toggle.
 
-## Step 4: Check drift as you go
+## Step 4: Look, drift, detect
+
+**Look at every screen before he does.** Render each batch with `shots.sh`
+(`STUDIO.md` §6) and read the PNGs: clipped text, overflow past the frame,
+illegible contrast in dark mode, a state that renders blank. When
+`webapp-testing` is installed, use it to click through the interactions (open the
+sheet, log the entry) and screenshot the result too.
 
 Run `drift.py docs/product/design/` (`STUDIO.md` §7) after each batch of screens. Every hit is
 fixed by using the token, or, when a new value is genuinely needed, by adding it
 to `tokens.json`, regenerating `tokens.css`, and noting it in `DESIGN.md`'s
-decisions table. Zero drift before handing over.
+decisions table. Zero drift before handing over. Run the `impeccable` detector on
+the screens when installed, and fix or justify each finding.
 
 ## Step 5: Walk him through
 
@@ -63,9 +72,14 @@ changes with targeted edits to the affected screens or components, never a
 rewrite of a screen he has approved. Set the `mockups` row and log any design
 decisions in `README.md`.
 
+If he wants to adjust screens by hand in Figma, and the Figma connector is
+available, send the approved screens there. Changes made in Figma come back as
+token or screen edits here, so `docs/product/` stays the source of truth.
+
 ## Done when
 
 - Every screen in the agreed inventory exists, with every listed state.
 - `index.html` shows the whole flow in order.
 - `drift.py docs/product/design/` reports zero values.
+- Every screen was rendered and looked at in light and dark before he saw it.
 - He walked the flow and approved it.

@@ -35,7 +35,13 @@ For each one, from its store listing, site and screenshots:
 
 - Who it is for, its price and model (free, freemium, subscription).
 - Its core loop: what the user does every day, and how many taps it takes.
-- Its look: type, colour, density, tone of copy, what the screenshots lead with.
+- **Its real screens.** For iOS apps, the iTunes lookup returns the store
+  screenshots: `curl -s "https://itunes.apple.com/search?term=<name>&entity=software&limit=3"`
+  gives `screenshotUrls`, `artworkUrl512`, rating and review count. Download them
+  into `docs/product/research/<app>/` and look at every one. For Android and the
+  web, use the listing and site screenshots.
+- Its look, from those screens: type, colour, density, tone of copy, what the
+  screenshots lead with.
 - **What people complain about**: read its 1 to 3 star reviews on both stores and
   in Reddit threads. Quote the recurring complaints. These are the best evidence
   in the whole skill, because they are needs nobody is meeting.
@@ -48,6 +54,10 @@ For each one, from its store listing, site and screenshots:
 | **Expected** | What does every app in the category do? Users will miss it if it is absent. |
 | **Trending** | What are the newer apps doing that the old leaders are not? |
 | **Missing** | What do the complaints and the gaps say nobody does well? |
+
+When `ui-ux-pro-max` is installed (`STUDIO.md` §9), use its data on styles and
+UX patterns for the category as a cross-check, labelled as reference data, not
+as observed competitors.
 
 Then a **sameness map**: the visual and interaction habits the category shares
 (the same dashboard, the same pie chart, the same colours), so the design steps
@@ -72,11 +82,13 @@ ask for them, and the ones every app has that his wedge can safely leave out.
 Sections: competitors (a table with name, platform, price, core loop, look, link),
 complaints (grouped, quoted, with counts and links), the three layers, the
 sameness map, the feature gap list, and **the interface thesis** he chose, last
-and prominent. Update `README.md`.
+and prominent. Run the fresh-eyes review (`STUDIO.md` §2), then update
+`README.md`.
 
 ## Done when
 
-- At least 8 competitors are covered, each claim with a URL fetched this session.
+- At least 8 competitors are covered, each claim with a URL fetched this session,
+  and the iOS ones with their store screenshots saved and looked at.
 - Complaints are quoted from real reviews, grouped, and counted.
 - `NICHE.md` ends in one interface thesis he chose, with its evidence.
 - `README.md` shows `niche` done and logs the thesis as a decision.

@@ -31,7 +31,10 @@ For example "Ledger: a running paper list, no charts until you ask" versus
 so variants differ in **layout, hierarchy, interaction and composition**. If he
 asks for a variant outside the system, mark it and its token changes clearly.
 
-Check the set is really different with the headline-swap test, then show the
+Write the concepts as **separate design teams**, literally: brief one subagent
+per variant with the same inputs and a different bet, none seeing the others,
+each following `frontend-design` when it is installed (`STUDIO.md` §9). Check
+the set is really different with the headline-swap test, then show the
 concepts. He can drop, add or change them before anything is built.
 
 ## Step 3: Build the board
@@ -39,7 +42,8 @@ concepts. He can drop, add or change them before anything is built.
 For each screen, `design/variants/<screen>/board.html`: every variant side by side
 in its frame (`STUDIO.md` §6), each labelled with its name and bet, real content,
 light and dark toggle, and the core interaction working where it matters (tap to
-log, swipe, a sheet opening). Every value comes from `tokens.css`. Open the board.
+log, swipe, a sheet opening). Every value comes from `tokens.css`. Render the board with `shots.sh` and look at
+it before he does (`STUDIO.md` §6), then open it.
 
 To explore one component rather than whole screens (the log button, the amount
 input), use the `prototype` skill when installed (`STUDIO.md` §9).
@@ -57,7 +61,8 @@ so say so.
 Write `design/variants/DIRECTION.md`: the chosen direction per screen, what was
 merged in from the others, what was rejected and why, and the layout and
 interaction rules the full set of screens must follow. `/mockups` builds from
-it. Log the decisions and set the row in `README.md`.
+it. Append the layouts he chose and rejected to the taste file (`STUDIO.md` §10),
+log the decisions and set the row in `README.md`.
 
 ## Done when
 

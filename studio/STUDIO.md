@@ -34,6 +34,8 @@ planning files live in its `docs/product/`:
     screens/index.html, <NN>-<screen>.html   # /mockups
   REVIEW.md          # /design-review
   ARCHITECTURE.md    # /tech-plan
+  LAUNCH.md          # /launch-kit: store listing, keywords, launch plan
+  launch/            # store screenshots, landing page, social images
 ```
 
 For a new product, `/idea` creates `~/code/personal/<product-slug>/` with
@@ -57,6 +59,24 @@ taste is his, and the skills exist to sharpen it, not replace it.
 Write in plain English. Praise is not information: skip "great idea" and say
 what is strong or weak about it, specifically.
 
+### Fresh eyes on every written file
+
+Before showing `IDEA.md`, `NICHE.md`, `DESIGN.md` or `ARCHITECTURE.md` for
+approval, have a **fresh subagent read it cold**, with only the file and this
+contract. It reports on completeness, consistency, clarity, scope and feasibility,
+and marks each finding blocking or minor. Fix the blocking ones, rerun once on
+the changes only, and write whatever is left as a `## Reviewer concerns` section.
+Then show him the whole file in chat, since collapsed tool output hides it.
+
+### Independent voices for taste
+
+Where taste matters most (the design direction in `/design-system`, the concepts
+in `/design-variants`, the names in `/brand`), brief two or three subagents with
+the same inputs and **without your draft**, and ask each for its own proposal.
+Put theirs next to yours, credited, and build the recommendation from the best of
+them. Agreement between independent voices is a signal; so is the one idea only
+one of them had.
+
 ## 3. `README.md`: state
 
 ```markdown
@@ -78,6 +98,7 @@ platform: ios, android     # the targets, from /idea
 | mockups | not started | design/screens/ |
 | design-review | not started | REVIEW.md |
 | tech-plan | not started | ARCHITECTURE.md |
+| launch-kit | not started | LAUNCH.md, launch/ |
 
 ## Decisions
 | Date | Step | Decision | Why |
@@ -156,6 +177,16 @@ TS export is what the app imports, written by `/tech-plan`.
   specific to it.
 - A light and dark toggle on every page.
 
+**Look before showing.** Render every page with
+`${CLAUDE_PLUGIN_ROOT}/scripts/shots.sh <out-dir> <files...>` (add `--web` for web
+frames): a PNG per page in light and dark. Read the PNGs and fix what is wrong
+(clipped text, overflow, broken contrast, an empty state that is just blank)
+before he sees anything. Every page reads `?theme=dark` and sets
+`data-theme="dark"` on `<html>`, so the script can shoot both. When the
+`impeccable` skill is installed, also run its detector on the HTML,
+`<impeccable-dir>/scripts/impeccable detect --viewport 390x844 <files>`, and
+treat its findings like drift.
+
 Open them with `open <file>` so he sees them in the browser. If the session can
 publish a private page, offer that too, so he can check them on his phone.
 
@@ -181,20 +212,43 @@ needs to exist becomes a token first, then gets used.
   work, use only tokens, and flag drift.
 - `/prd` and `/user-stories` in `product` read `IDEA.md` when present.
 
-## 9. Companion design skills
+## 9. Companion skills
 
-Installed separately (`npx skills add emilkowalski/skill`), and used by the
-studio steps when present. Each step names the ones it calls, and carries on
-without them when they are missing.
+Installed separately (`npx skills add <repo>`), used by the studio steps when
+present. A missing one is skipped, never a blocker. Each step names the ones it
+calls.
 
-| Skill | Used in | For |
-|---|---|---|
-| `emil-design-eng` | `/design-system`, `/design-review` | The polish bar: component feel, the invisible details |
-| `apple-design` | `/design-system`, `/design-review` | Fluid physical motion, gestures, sheets, materials, type detail |
-| `prototype` | `/design-variants` | Several versions of one component behind a live picker |
-| `break-ui` | `/mockups`, `/design-review` | Worst-case data: long names, zero items, huge numbers, non-Latin text |
-| `mobile-native` | `/mockups` | Make HTML mockups feel installed on a phone |
-| `review-animations`, `find-animation-opportunities` | `/design-review` | Motion critique, and where motion is missing |
-| `pick-ui-library` | `/tech-plan` | Library picks for charts, numbers, sheets, toasts, lists |
-| `animate-expo`, `animate` | Building, after `/tech-plan` | Implementing the motion `DESIGN.md` specifies, in Expo or on the web |
+| Skill | From | Used in | For |
+|---|---|---|---|
+| `impeccable` | pbakaus/impeccable | `/design-system`, `/mockups`, `/design-review`, `/launch-kit` | Its `shape`, `typeset`, `colorize`, `onboard`, `clarify`, `critique`, `audit`, `polish` playbooks, and the `detect` scan for generic AI design |
+| `frontend-design` | anthropics/skills | `/design-system`, `/design-variants` | A distinctive aesthetic direction instead of a template |
+| `ui-ux-pro-max` | nextlevelbuilder | `/niche`, `/design-system` | Searchable styles, palettes, font pairings and UX rules for shortlists. Research, not decisions |
+| `emil-design-eng` | emilkowalski/skill | `/design-system`, `/design-review` | The polish bar for components and the invisible details |
+| `apple-design` | emilkowalski/skill | `/design-system`, `/design-review` | Fluid physical motion, gestures, sheets, materials, type detail |
+| `prototype` | emilkowalski/skill | `/design-variants` | Several versions of one component behind a live picker |
+| `break-ui` | emilkowalski/skill | `/mockups`, `/design-review` | Worst-case data: long names, zero items, huge numbers, non-Latin text |
+| `mobile-native` | emilkowalski/skill | `/mockups` | HTML mockups that feel installed on a phone |
+| `review-animations`, `find-animation-opportunities` | emilkowalski/skill | `/design-review` | Motion critique, and where motion is missing |
+| `canvas-design` | anthropics/skills | `/brand`, `/launch-kit` | Posters, store art, social images as PNG or PDF |
+| `webapp-testing` | anthropics/skills | `/mockups`, `/design-review` | Driving the HTML in a real browser: clicks, sheets, states |
+| `pick-ui-library` | emilkowalski/skill | `/tech-plan` | Library picks for charts, numbers, sheets, toasts, lists |
+| `expo-overview`, `expo-project-structure`, `expo-router`, `expo-native-ui`, `expo-design-system` | expo/skills | `/tech-plan` | The Expo stack, folder layout, navigation, native feel, and turning tokens into a theme with component conventions |
+| `react-native-best-practices`, `react-navigation` | callstackincubator | `/tech-plan` | Performance rules, and navigation when not on Expo Router |
+| `animate-expo`, `expo-animation`, `expo-data-fetching` | emilkowalski, expo | Building | Implementing `DESIGN.md`'s motion, and data loading with its states |
+| `eas-app-stores`, `eas-update`, `eas-workflows` | expo/skills | `/launch-kit`, building | Store submission and metadata, over-the-air updates, CI |
 
+## 10. Taste memory
+
+`~/.claude/studio-taste.md` remembers his taste across products: every font,
+palette, layout, aesthetic, name style and icon direction he **chose or rejected**,
+each with the product and date. The design steps read it first, to steer toward
+what he likes, and to avoid giving every product the same face: a font he chose
+for the last product is offered again only when he asks. Each step appends what he
+decided before it finishes.
+
+```markdown
+## Chosen
+- 2026-10-24 font Instrument Serif (display), product: budly. "Feels like a notebook."
+## Rejected
+- 2026-10-24 palette near-black and neon, product: budly. "Too crypto."
+```

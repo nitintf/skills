@@ -97,10 +97,9 @@ Sections, in this order, one bullet per decision, empty sections omitted:
   "watch two friends log a week of spending and note where they give up".
 - **Scope**: left empty, `/founder-review` fills it.
 
-Then have a fresh subagent read the doc cold and report blocking problems only:
-a contradiction, a missing decision, a premise the approach ignores. Fix those,
-then show him the whole doc in chat (tool output gets collapsed) and ask:
-approve, revise, or start over.
+Then run the fresh-eyes review (`STUDIO.md` §2): a contradiction, a missing
+decision, or a premise the approach ignores is blocking. Show him the whole doc
+and ask: approve, revise, or start over.
 
 Set the `idea` row and log the decisions in `README.md`.
 

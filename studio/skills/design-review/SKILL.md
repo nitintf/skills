@@ -14,8 +14,13 @@ report about them.
 
 Read [`STUDIO.md`](../../STUDIO.md) first. Read `NICHE.md` (the thesis),
 `DESIGN.md`, `tokens.json`, `DIRECTION.md` and the screens in `design/screens/`.
-Pass `app` to review the running app's screens or source instead; the passes are
-the same.
+Pass `app` to review the built app instead; the passes are the same.
+
+**In `app` mode, compare the app with the mockups.** Run it in the iOS simulator
+(and the Android emulator when it targets Android), capture each screen with
+`xcrun simctl io booted screenshot <file>.png` (or `adb exec-out screencap -p`),
+and look at each next to its mockup PNG. Every difference is a finding: the build
+drifted from the plan, or the plan needs updating on purpose.
 
 ## Step 1: Drift
 
@@ -37,10 +42,17 @@ for this product**, specifically.
 | 5 | System fit | Do screens use the components and rules in `DESIGN.md`? Are its Do and Don't rules kept? Same thing, same look, everywhere? |
 | 6 | Accessibility and platform | Contrast, dynamic type, 44 point targets, VoiceOver and TalkBack labels, safe areas, reduced motion, platform conventions |
 
-When installed (`STUDIO.md` §9), bring in the specialists: `emil-design-eng`
-for pass 5's polish, `break-ui` for pass 2's states, `review-animations` and
-`find-animation-opportunities` for motion, and `apple-design` for gestures and
-sheets in pass 6. Their findings go into the matching pass, scored the same way.
+Score from the rendered screens, not the HTML source: shoot them with
+`shots.sh` (`STUDIO.md` §6) and look at each one.
+
+When installed (`STUDIO.md` §9), bring in the specialists: `impeccable`'s
+`critique` and `audit` playbooks across all passes and its `detect` scan for pass
+4, `emil-design-eng` for pass 5's polish, `break-ui` for pass 2's states,
+`review-animations` and `find-animation-opportunities` for motion, and
+`apple-design` for gestures and sheets in pass 6. Their findings go into the
+matching pass, scored the same way. Brief one more subagent, cold, with only the
+screen PNGs and the thesis: what does this product feel like, and what would it
+be mistaken for? Its first impression goes into pass 4.
 
 Then an unscored list: **decisions still open**, each with what happens if it is
 left to whoever builds it ("the engineer ships 'No items found.'").
@@ -60,7 +72,8 @@ accepted below 8 and why, and the open decisions with his answers. Set the
 
 ## Done when
 
-- Drift is zero.
+- Drift is zero, and the `impeccable` detector findings are fixed or justified
+  when it is installed.
 - All six passes have a score with "what a 10 looks like", before and after.
 - Every pass is at 8 or above, or he accepted it lower on record.
 - `REVIEW.md` is written and the open decisions are answered or listed.

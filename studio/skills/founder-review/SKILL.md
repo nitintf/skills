@@ -26,6 +26,10 @@ Before scope, three questions, answered in your own words with a recommendation:
 
 If any answer undermines `IDEA.md`, say so first and offer to go back to `/idea`.
 
+Then the **12-month picture**: what does this product look like a year from now if
+it works, and does the first version head straight there or into a dead end?
+Name anything in the wedge that would have to be thrown away.
+
 ## Step 2: Choose the mode
 
 | Mode | Use when | Posture |
@@ -52,6 +56,11 @@ could go wrong: no data yet, a failed sync, lost connection, a wrong entry to
 undo, a permission refused. Each one is either handled in scope or written down
 as a known gap. A failure that is unhandled, untested and silent is not allowed
 to stay unnamed.
+
+Before writing, brief one subagent as a skeptical user of a competitor's app, with
+`IDEA.md`, `NICHE.md` and the scope so far, and ask: what would make you switch,
+and what in this scope would you never use? Show its answer next to the scope,
+and let him adjust.
 
 ## Step 5: Write the Scope section
 
