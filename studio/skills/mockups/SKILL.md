@@ -42,6 +42,10 @@ One file per screen, `design/screens/<NN>-<screen>.html`, in its frame:
 - The interaction that matters on that screen works: the sheet opens, the entry
   logs, the signature moment from `DESIGN.md` plays.
 
+After each screen, run `break-ui` on it when installed (`STUDIO.md` §9) and fix
+what breaks under worst-case data. Apply `mobile-native` so phone mockups behave
+like an installed app (safe areas, no tap flash, no input zoom).
+
 Then `design/screens/index.html`: every screen as a thumbnail in flow order,
 linking to each one, with the light and dark toggle.
 

@@ -37,6 +37,11 @@ for this product**, specifically.
 | 5 | System fit | Do screens use the components and rules in `DESIGN.md`? Are its Do and Don't rules kept? Same thing, same look, everywhere? |
 | 6 | Accessibility and platform | Contrast, dynamic type, 44 point targets, VoiceOver and TalkBack labels, safe areas, reduced motion, platform conventions |
 
+When installed (`STUDIO.md` §9), bring in the specialists: `emil-design-eng`
+for pass 5's polish, `break-ui` for pass 2's states, `review-animations` and
+`find-animation-opportunities` for motion, and `apple-design` for gestures and
+sheets in pass 6. Their findings go into the matching pass, scored the same way.
+
 Then an unscored list: **decisions still open**, each with what happens if it is
 left to whoever builds it ("the engineer ships 'No items found.'").
 

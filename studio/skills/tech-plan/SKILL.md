@@ -36,7 +36,10 @@ alternative, and the cost of changing it later:
 - Testing: unit, component, and end to end, and what runs in CI.
 - Build and release: EAS or equivalent, environments, crash reporting, analytics.
 
-Check each library this session: current version, maintenance, and that it
+Use `pick-ui-library` when installed (`STUDIO.md` §9) for the UI pieces: charts,
+number formatting, sheets, toasts, lists. For motion, name `animate-expo` (or
+`animate` on the web) as the skill to build `DESIGN.md`'s motion with. Check each
+library this session: current version, maintenance, and that it
 supports the platforms. A library you only remember is labelled as unverified.
 
 ## Step 3: System design

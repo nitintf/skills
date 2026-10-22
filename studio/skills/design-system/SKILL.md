@@ -57,7 +57,9 @@ Decide in this order, each choice with a one-line reason tied to the anchor:
 5. **Space and shape**: a base unit and the scale, density, radius scale (an
    inner radius is the outer radius minus the gap), borders versus shadows.
 6. **Motion and feel**: durations, easing, the **one signature moment** (what
-   happens when a spend is logged, for instance), and haptics on mobile.
+   happens when a spend is logged, for instance), and haptics on mobile. When
+   installed, follow `apple-design` for springs, gestures and sheets, and hold
+   the components to the `emil-design-eng` polish bar (`STUDIO.md` §9).
 
 Then split it out loud:
 

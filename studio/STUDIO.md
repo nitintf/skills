@@ -180,3 +180,21 @@ needs to exist becomes a token first, then gets used.
   read `docs/product/DESIGN.md` and `ARCHITECTURE.md` before UI or structural
   work, use only tokens, and flag drift.
 - `/prd` and `/user-stories` in `product` read `IDEA.md` when present.
+
+## 9. Companion design skills
+
+Installed separately (`npx skills add emilkowalski/skill`), and used by the
+studio steps when present. Each step names the ones it calls, and carries on
+without them when they are missing.
+
+| Skill | Used in | For |
+|---|---|---|
+| `emil-design-eng` | `/design-system`, `/design-review` | The polish bar: component feel, the invisible details |
+| `apple-design` | `/design-system`, `/design-review` | Fluid physical motion, gestures, sheets, materials, type detail |
+| `prototype` | `/design-variants` | Several versions of one component behind a live picker |
+| `break-ui` | `/mockups`, `/design-review` | Worst-case data: long names, zero items, huge numbers, non-Latin text |
+| `mobile-native` | `/mockups` | Make HTML mockups feel installed on a phone |
+| `review-animations`, `find-animation-opportunities` | `/design-review` | Motion critique, and where motion is missing |
+| `pick-ui-library` | `/tech-plan` | Library picks for charts, numbers, sheets, toasts, lists |
+| `animate-expo`, `animate` | Building, after `/tech-plan` | Implementing the motion `DESIGN.md` specifies, in Expo or on the web |
+

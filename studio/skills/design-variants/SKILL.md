@@ -41,6 +41,9 @@ in its frame (`STUDIO.md` §6), each labelled with its name and bet, real conten
 light and dark toggle, and the core interaction working where it matters (tap to
 log, swipe, a sheet opening). Every value comes from `tokens.css`. Open the board.
 
+To explore one component rather than whole screens (the log button, the amount
+input), use the `prototype` skill when installed (`STUDIO.md` §9).
+
 ## Step 4: Collect his read
 
 He picks a favourite per screen, says what he likes in the others, or asks for
