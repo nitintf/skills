@@ -8,13 +8,18 @@ That only works if every skill agrees on the sections below and, critically,
 **edits only the sections it owns**. This file is the agreement.
 
 ```
-$VAULT/Daily/<YYYY-MM-DD>.md            # the daily note, current week only
-$VAULT/Daily/Archive/<YYYY-MM-DD>.md    # every earlier day, same filename (see §7)
-$VAULT/Daily/Weekly/<YYYY>-W<ww>.md     # the weekly review (different cadence, own file)
+$DAILY/<YYYY-MM-DD>.md            # the daily note, current week only
+$DAILY/Archive/<YYYY-MM-DD>.md    # every earlier day, same filename (see §7)
+$DAILY/Weekly/<YYYY>-W<ww>.md     # the weekly review (different cadence, own file)
 ```
 
 Resolve `$VAULT` from `$OBSIDIAN_VAULT`, else the directory containing
 `.obsidian/`, else ask. **Never write to a guessed path.**
+
+Resolve `$DAILY` from the `daily` row of `$VAULT/99 Meta/Paths.md`, a two-column
+table of key and path, relative to `$VAULT`. No file or no row means
+`$VAULT/Daily`. Every daily note path in these skills is under `$DAILY`, so
+moving the folder is a one-line edit in Paths.md and nothing else.
 
 ---
 
@@ -267,9 +272,9 @@ git: one write per day, at the end, when the day is actually done.
 
 ---
 
-## 7. The weekly archive (`Daily/Archive/`)
+## 7. The weekly archive (`$DAILY/Archive/`)
 
-`Daily/` holds the current week. Everything older lives in `Daily/Archive/`,
+`$DAILY/` holds the current week. Everything older lives in `$DAILY/Archive/`,
 flat, same filenames, nothing renamed.
 
 **The boundary is the Monday of the week you are running in.** A note dated on
@@ -281,17 +286,17 @@ Who moves them:
   before the vault commit, so the move and the note land in one commit.
 - **`/daily` on any run that finds stale notes**, as a catch-up, because Friday
   shutdowns get missed. Move first, then read. A Monday `/daily` that finds last
-  week still sitting in `Daily/` archives it and carries on.
+  week still sitting in `$DAILY/` archives it and carries on.
 
 Never delete, never rewrite, never rename. Use `git mv` so history follows the
 file. Committing is `/shutdown`'s job either way (§6); `/daily` moves files and
 leaves them staged.
 
 **Archiving changes filing, not reach.** Every skill that looks for "the most
-recent existing note" searches `Daily/` first, then `Daily/Archive/`, and reads
+recent existing note" searches `$DAILY/` first, then `$DAILY/Archive/`, and reads
 whichever is newest by date. A Monday brief still picks Friday's shutdown out of
 the archive, `/weekly` still reads a full week out of it, and a carried task
-still keeps its day count across the boundary. If a skill can only see `Daily/`,
+still keeps its day count across the boundary. If a skill can only see `$DAILY/`,
 the archive has broken the loop, and that is a bug in the skill.
 
 ---

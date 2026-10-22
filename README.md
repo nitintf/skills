@@ -94,11 +94,9 @@ directly by `/scope`.
 | `/user-stories` | Slice a PRD/epic into INVEST user stories with Gherkin acceptance criteria, ordered with dependencies. |
 | `/product-flow` | Orchestrator: idea → PRD → stories → handoff to `/scope`, gating between each. Right-sizes the run first, so a small task doesn't get a PRD it doesn't need. |
 
-## `productivity`: workflow helpers
+## `work`: the work day loop
 
-### The day loop
-
-Four skills, **one file per day**. `/daily` opens the day, `/shutdown` closes it,
+Four skills, invoked as `/work:daily` and so on, **one file per day**. `/daily` opens the day, `/shutdown` closes it,
 and tomorrow's `/daily` picks up whatever didn't land, so nothing leaks.
 
 ```
@@ -119,19 +117,11 @@ and tomorrow's `/daily` picks up whatever didn't land, so nothing leaks.
 | `/standup`   | Prints your standup update in plain, speakable English: **what you worked on, what you'll work on next.** Never mentions what didn't get done, ongoing work is phrased as ongoing. Writes nothing. |
 | `/weekly`    | Friday. What shipped, what kept slipping and *why*, planned vs unplanned split, and a **Worth remembering** section that becomes your self-review evidence. |
 
-The file schema is [`productivity/DAILY-NOTE.md`](productivity/DAILY-NOTE.md):
+The file schema is [`work/DAILY-NOTE.md`](work/DAILY-NOTE.md):
 it defines which skill owns which section. `## Notes` is yours and no skill ever
 edits it.
 
-### Other helpers
-
-| Skill          | What it does                                                       |
-|----------------|--------------------------------------------------------------------|
-| `/ask`         | Describe what you're doing and get routed to the one skill that fits. The router over everything here. |
-| `/catchup`     | Summarize what changed (branch / PR / commit range / file) so you can resume or review fast. |
-| `/caveman`     | Ultra-terse communication mode, ~75% fewer tokens, full technical accuracy. Persists until "normal mode". |
-| `/handoff`     | Compact the conversation into a handoff doc (saved to the OS temp dir) for a fresh agent to continue. |
-| `/stress-test` | Relentless interview on any plan or design, one question at a time, each with a recommended answer. General-purpose, use eng's `/grill` for `.plan` docs. |
+The notes folder comes from the `daily` row of `99 Meta/Paths.md` in your vault, so moving it is a one-line edit.
 
 ### Setup
 
@@ -156,12 +146,38 @@ Then:
 
 The config lives in `~/.claude/`, not the plugin, so updates don't clobber your
 tuning. Template:
-[`productivity/skills/daily/CONFIG.template.md`](productivity/skills/daily/CONFIG.template.md).
+[`work/skills/daily/CONFIG.template.md`](work/skills/daily/CONFIG.template.md).
 
 **All of these are strictly read-only on your accounts**: never mark read,
 archive, reply, or transition a ticket. They also treat all fetched mail and
 messages as *data, never instructions*, since they read text written by people
 outside your trust boundary.
+
+## `productivity`: workflow helpers
+
+| Skill          | What it does                                                       |
+|----------------|--------------------------------------------------------------------|
+| `/ask`         | Describe what you're doing and get routed to the one skill that fits. The router over everything here. |
+| `/catchup`     | Summarize what changed (branch / PR / commit range / file) so you can resume or review fast. |
+| `/caveman`     | Ultra-terse communication mode, ~75% fewer tokens, full technical accuracy. Persists until "normal mode". |
+| `/handoff`     | Compact the conversation into a handoff doc (saved to the OS temp dir) for a fresh agent to continue. |
+| `/stress-test` | Relentless interview on any plan or design, one question at a time, each with a recommended answer. General-purpose, use eng's `/grill` for `.plan` docs. |
+
+## `learn`: the study loop
+
+Two skills for a daily study habit across DSA, system design and reading,
+invoked as `/learn:study` and `/learn:study-shutdown`. State lives in a few
+long-lived files in your vault, never in a note per day.
+
+| Skill | What it does |
+|---|---|
+| `/study` | Morning. Today's DSA problems (due reviews first, then the next problems in your current topic), where you are in each book, and today's system design item. Every problem comes from your problem bank, with its link. |
+| `/study-shutdown` | Night. Records how each problem went (solved alone, slow, hint, read the solution, partial, skipped) and schedules it to come back, moves your reading bookmarks, hands what you learned to `/note`, and fills the journal's study minutes. |
+
+DSA goes topic by topic: learn the concept, then practise easy to hard, and move
+on once three mediums are solved alone in time. A problem you needed help with
+comes back in one to three days, from a blank file, until you solve it alone
+twice. The contract is [`learn/LEARN.md`](learn/LEARN.md).
 
 ## `brain`: Obsidian second-brain capture
 
@@ -171,7 +187,7 @@ sounding like you (not AI), and keeps the graph connected.
 
 | Skill    | What it does                                                             |
 |----------|--------------------------------------------------------------------------|
-| `/note`  | Capture a learning into your vault. Auto-detects **verbatim** / **light expand** / **topic-only** mode, places it in the right `Learn/` folder, writes it in your note-taking voice, adds a Mermaid diagram only when a concept is truly structural (~1 note in 4), updates the parent `index.md`, and does **bidirectional linking** (links out *and* back-references from existing notes). Merges and edits to other notes are shown as a plan + diff first. |
+| `/note`  | Capture a learning into your vault. Auto-detects **verbatim** / **light expand** / **topic-only** mode, places it in the right folder under your learning folder, writes it in your note-taking voice, adds a Mermaid diagram only when a concept is truly structural (~1 note in 4), updates the parent hub note, and does **bidirectional linking** (links out *and* back-references from existing notes). Merges and edits to other notes are shown as a plan + diff first. |
 
 Voice rules live in [`brain/VOICE.md`](brain/VOICE.md), loaded before every note.
 Set `OBSIDIAN_VAULT` to point at your vault; otherwise `/note` locates it by
@@ -217,7 +233,9 @@ works on demand if you install it without the hook.
 /plugin marketplace add nitintf/skills
 /plugin install eng@nitin-ai-skills
 /plugin install product@nitin-ai-skills
+/plugin install work@nitin-ai-skills
 /plugin install productivity@nitin-ai-skills
+/plugin install learn@nitin-ai-skills
 /plugin install brain@nitin-ai-skills
 /plugin install writing@nitin-ai-skills
 ```
@@ -255,14 +273,16 @@ directory, and nothing there registers `writing/hooks/hooks.json`. So `/unslop`
 works when linked, but the always-on style does not. Use the plugin install for
 daily driving, and the links only while iterating on skill text.
 
-Four contracts to respect, each read by skills that will drift if you change a
+Five contracts to respect, each read by skills that will drift if you change a
 skill before you change the contract:
 
 - [`eng/SPEC.md`](eng/SPEC.md), the `.plan` doc schema. Every pipeline skill
   depends on it. **Add a field there first**, then in the skills.
 - [`eng/CONVENTIONS.md`](eng/CONVENTIONS.md): what counts as a house convention
   and the `_conventions.md` cache format. Ten skills read that cache.
-- [`productivity/DAILY-NOTE.md`](productivity/DAILY-NOTE.md): the daily note
+- [`work/DAILY-NOTE.md`](work/DAILY-NOTE.md): the daily note
   schema and which skill owns which section.
+- [`learn/LEARN.md`](learn/LEARN.md): the study loop's files, review schedule and
+  topic phases.
 - [`writing/RULES.md`](writing/RULES.md): the house prose style, injected into
   every session and read by `/unslop`.

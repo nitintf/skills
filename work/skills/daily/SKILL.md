@@ -78,15 +78,15 @@ not enter the brief at any stage, and Step 3 adds to those lists.
 
 ## Step 3: Read yesterday, establish the window
 
-**First, archive anything stale.** `Daily/` holds the current week only
+**First, archive anything stale.** `$DAILY/` holds the current week only
 (`DAILY-NOTE.md` §7). Any note dated before the Monday of this week gets
-`git mv`'d into `$VAULT/Daily/Archive/`, creating that directory if it does not
+`git mv`'d into `$DAILY/Archive/`, creating that directory if it does not
 exist. This is the catch-up path for a missed Friday shutdown: on a Monday you
 will usually find all of last week sitting there. Move first, read second, and
 leave the moves staged. **`/daily` still never commits** (§6).
 
-Then find the **most recent existing** note, searching `$VAULT/Daily/*.md` and
-`$VAULT/Daily/Archive/*.md` and taking whichever date is newest. That is
+Then find the **most recent existing** note, searching `$DAILY/*.md` and
+`$DAILY/Archive/*.md` and taking whichever date is newest. That is
 "yesterday" for our purposes, whether it is literally yesterday, Friday, or two
 weeks ago. **An archived note is read exactly like a current one**: same
 carry-over, same annotations, same day counts. Archiving files a note, it does
@@ -321,7 +321,7 @@ Rules for the prose:
 
 ## Step 8: Write the daily note
 
-Write `$VAULT/Daily/<YYYY-MM-DD>.md` per the schema, and print the brief to chat.
+Write `$DAILY/<YYYY-MM-DD>.md` per the schema, and print the brief to chat.
 Set frontmatter `brief:` to the current time and `carried:` to the carry-over
 count.
 
@@ -414,5 +414,5 @@ Never write the config without confirmation.
 - Every task in `## Plan for today` is one he could tick tonight.
 - Every unticked task from Home's `## Notes` is in today's plan or carried over,
   and Home's `## Notes` holds only his non-task text and one empty `- [ ] `.
-- No note older than this week's Monday is still sitting in `Daily/`, and every
+- No note older than this week's Monday is still sitting in `$DAILY/`, and every
   note that moved is staged, not committed.

@@ -64,10 +64,10 @@ use". `/review` is pre-commit and local; `/pr-review` is pre-merge and pulls
 | `/user-stories` | A PRD or epic needs slicing into shippable, testable stories. |
 | `/product-flow` | An idea needs the whole run: PRD, stories, then handoff to `/scope`. |
 
-## The day loop
+## The work day loop (`work` plugin)
 
 One file per day. `/daily` opens it, `/shutdown` closes it, tomorrow's `/daily`
-carries forward whatever did not land.
+carries forward whatever did not land. Invoked as `/work:daily` and so on.
 
 | Reach for | When |
 |---|---|
@@ -75,6 +75,16 @@ carries forward whatever did not land.
 | `/standup` | Before the meeting. Prints a speakable update, writes nothing. |
 | `/shutdown` | End of day. Ticks off the plan from real evidence, then commits and pushes the vault. |
 | `/weekly` | Friday. What shipped, what slipped, and your accomplishments log. |
+
+## The study loop (`learn` plugin)
+
+| Reach for | When |
+|---|---|
+| `/study` | Morning, before studying. Today's DSA problems, reading bookmark and system design item. Invoked as `/learn:study`. |
+| `/study-shutdown` | After studying. Logs each problem's result, schedules reviews, moves bookmarks, sends what you learned to `/note`. |
+
+`/study-shutdown` is not the work `/shutdown`: one records study, the other closes
+the work day and commits the vault.
 
 ## Everything else
 

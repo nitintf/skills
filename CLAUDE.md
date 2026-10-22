@@ -1,8 +1,8 @@
 # Maintaining this repo
 
 This repo is a [Claude Code plugin marketplace](https://code.claude.com/docs/en/plugins).
-Five plugins, each a folder at the root: `eng`, `product`, `productivity`,
-`brain`, `writing`. Skills are plain markdown at
+Seven plugins, each a folder at the root: `eng`, `product`, `work`,
+`productivity`, `learn`, `brain`, `writing`. Skills are plain markdown at
 `<plugin>/skills/<name>/SKILL.md`.
 
 ## Commits
@@ -57,7 +57,8 @@ Files other skills depend on. Change these first, then the skills.
 | [`eng/SPEC.md`](eng/SPEC.md) | The `.plan` doc schema. Every pipeline skill reads and writes it. Add a field here before adding it to a skill. |
 | [`eng/CONVENTIONS.md`](eng/CONVENTIONS.md) | What counts as a house convention and the `_conventions.md` cache format. Ten skills read that cache. |
 | [`eng/REVIEW-FORMAT.md`](eng/REVIEW-FORMAT.md) | What earns a review finding and how each one is laid out. `/pr-review` and `/review` both report in this shape. |
-| [`productivity/DAILY-NOTE.md`](productivity/DAILY-NOTE.md) | The daily note schema, and which skill owns which section. `## Notes` is the user's and no skill edits it. |
+| [`work/DAILY-NOTE.md`](work/DAILY-NOTE.md) | The daily note schema, and which skill owns which section. `## Notes` is the user's and no skill edits it. |
+| [`learn/LEARN.md`](learn/LEARN.md) | The study loop: its files, the six problem results and when each comes back, topic phases, bookmarks. `/study` and `/study-shutdown` both follow it. |
 | [`writing/RULES.md`](writing/RULES.md) | The house writing style, injected into every session by the `writing` plugin's `SessionStart` hook. `/unslop` reads it rather than restating it. |
 
 ## Checklist for adding a skill

@@ -23,7 +23,7 @@ and specifically §2, which says exactly what you may and may not edit.
 
 ## Step 1: Load this morning's plan
 
-Read `$VAULT/Daily/<today>.md`.
+Read `$DAILY/<today>.md`.
 
 - **No note for today?** `/daily` never ran. Don't fail: reconstruct the day
   from evidence (Step 2) and write a Shutdown section anyway, noting there was
@@ -144,7 +144,7 @@ plan.
 
 ## Step 6: Write it back to the same file
 
-Edit `$VAULT/Daily/<today>.md` in place, **the file `/daily` wrote this
+Edit `$DAILY/<today>.md` in place, **the file `/daily` wrote this
 morning**. Never create a second file for today.
 
 Per `DAILY-NOTE.md` §2, you may:
@@ -181,8 +181,8 @@ period, or parentheses.
 
 Only on Fridays, and only after the `## Shutdown` section is written.
 
-`Daily/` holds the current week; everything older belongs in
-`$VAULT/Daily/Archive/` (`DAILY-NOTE.md` §7). `git mv` every note dated before
+`$DAILY/` holds the current week; everything older belongs in
+`$DAILY/Archive/` (`DAILY-NOTE.md` §7). `git mv` every note dated before
 this week's Monday into it, creating the directory if it does not exist. Today's
 note stays put: the week is not over until it is filed, and it gets archived by
 next Friday's run.
@@ -264,7 +264,7 @@ If something's worth flagging, flag it once and plainly:
 - Anything he marked skip is out of the loop, not sitting in `### Didn't get to`.
 - Every tick in `### Done` traces to evidence or to his own note.
 - Nothing you wrote contains an em-dash.
-- On a Friday, every note older than this week's Monday is in `Daily/Archive/`
+- On a Friday, every note older than this week's Monday is in `$DAILY/Archive/`
   and moved with `git mv`, not copied or deleted.
 - The vault is committed and pushed, or you said plainly why it isn't. The commit
   message matches the repo's existing style and names no model.

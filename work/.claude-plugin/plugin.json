@@ -1,0 +1,9 @@
+{
+  "name": "work",
+  "description": "The work day loop, one Obsidian note per day. /daily plans the day into a task list from calendar, mail, Slack, Jira and meeting notes, /standup prints a speakable update, /shutdown closes the day from real evidence and commits the vault, /weekly reviews the week. The notes folder comes from 99 Meta/Paths.md in the vault.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nitin Panwar",
+    "email": "nitinpanwar0802@gmail.com"
+  }
+}

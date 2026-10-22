@@ -1,0 +1,9 @@
+{
+  "name": "learn",
+  "description": "A daily study loop for DSA, system design and reading. /study plans today's problems, reading and system design from your tracker, review queue and bookmarks. /study-shutdown logs what you did, schedules problems to come back, moves your reading bookmark and hands what you learned to /note.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nitin Panwar",
+    "email": "nitinpanwar0802@gmail.com"
+  }
+}
