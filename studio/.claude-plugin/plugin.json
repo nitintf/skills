@@ -1,7 +1,7 @@
 {
   "name": "studio",
-  "description": "Plan a new product end to end before any code: /idea runs office hours, /niche researches the category into an interface thesis, /founder-review settles scope, /brand finds a free name and draws the icon, /design-system locks one distinctive design system as tokens, /design-variants and /mockups design every screen as HTML, /design-review scores it and checks drift, /tech-plan fixes the stack, architecture and code rules, /launch-kit writes the store listings, screenshots and landing page. /studio-flow runs them in order.",
-  "version": "0.2.0",
+  "description": "Find and plan a new product before any code: /ideas finds what to build, /idea runs office hours, /niche researches the category into an interface thesis, /founder-review settles scope, /brand finds a free name and draws the icon, /design-system locks one distinctive design system as tokens, /design-variants and /mockups design every screen as HTML, /design-review scores it and checks drift, /tech-plan fixes the stack, architecture and code rules, /launch-kit writes the store listings, screenshots and landing page. /studio-flow runs them in order.",
+  "version": "0.3.0",
   "author": {
     "name": "Nitin Panwar",
     "email": "nitinpanwar0802@gmail.com"

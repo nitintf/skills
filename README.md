@@ -102,6 +102,7 @@ lives in its `docs/product/`. Each skill runs alone or in `/studio-flow`.
 
 | Skill | What it does |
 |---|---|
+| `/ideas` | Find what to build: a conversation that mines your own problems and edge, generates ideas from six angles, checks them against real apps and reviews, scores them, and hands the winner to `/idea`. |
 | `/idea` | Office hours: six hard questions, premises to agree, two or three approaches, then `IDEA.md`. Writes no code. |
 | `/niche` | Researches competitors, their store listings and their worst reviews, maps what the category does the same, and ends in an **interface thesis**. |
 | `/founder-review` | Pick expand, selective, hold or cut, then add, defer or skip every feature on record. |

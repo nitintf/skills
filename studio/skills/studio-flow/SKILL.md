@@ -18,7 +18,8 @@ Read [`STUDIO.md`](../../STUDIO.md) first.
 
 If the working directory has `docs/product/README.md`, read its step table and
 resume at the first step that is not `done`, or that is `needs rework`. Otherwise
-start a new product with `/idea`, which creates the folder.
+start a new product with `/idea`, which creates the folder. If he has no idea
+yet, or several, run `/ideas` first.
 
 ## Step 2: Run the steps
 

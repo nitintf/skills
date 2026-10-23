@@ -71,6 +71,7 @@ each also runs alone. Files land in `docs/product/` of the product's folder.
 
 | Reach for | When |
 |---|---|
+| `/ideas` | You want to build something but have no idea yet, or several. Finds and picks one. |
 | `/idea` | A new product idea. Office hours: hard questions, premises, approaches, `IDEA.md`. |
 | `/niche` | The category is crowded and you need the angle. Competitor and review research, ending in an interface thesis. |
 | `/founder-review` | Decide what the first version contains, feature by feature. |
@@ -83,7 +84,8 @@ each also runs alone. Files land in `docs/product/` of the product's folder.
 | `/launch-kit` | Store listings, keywords, store screenshots, landing page, first users. |
 | `/studio-flow` | Run all of the above in order, resuming where you stopped. |
 
-`/idea` is for a whole new product; `/prd` is for a feature inside one.
+`/ideas` chooses what to build; `/idea` pressure-tests the one you chose; `/prd`
+is for a feature inside an existing product.
 
 ## The work day loop (`work` plugin)
 
